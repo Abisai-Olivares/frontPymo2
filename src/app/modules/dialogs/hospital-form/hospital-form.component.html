@@ -1,0 +1,40 @@
+<div class="fixed inset-0 flex items-center bordermd:rounded-lg  justify-center z-50 ">
+
+  <div class="p-4 bg-white rounded-lg shadow-md border border-gray-200 ">
+
+    <form *ngIf="!isHospital" [formGroup]="hospitalForm">
+
+      <div class="mt-4 space-y-2">
+        <label class="text-gray-600 font-bold inline-block pb-2">Nombre del hospital</label>
+        <input id="name" [formControlName]="'name'"
+          class="w-full p-2 border rounded focus:outline-none focus:ring focus:border-orangev1" type="text"
+          placeholder="Nombre del hospital">
+      </div>
+      <div class="mt-4 space-y-2">
+        <label class="text-gray-600 font-bold inline-block pb-2">Casos registrados</label>
+        <input id="cases" [formControlName]="'cases'"
+          class="w-full p-2 border rounded focus:outline-none focus:ring focus:border-redv1" type="number"
+          placeholder="Casos registrados">
+      </div>
+      <div class="mt-8 flex justify-between">
+        <button class="px-4 py-2 bg-red-500 hover:bg-red-600 text-black font-semibold rounded-lg"
+          (click)="closeDialog()">Cerrar</button>
+        <button class="px-4 py-2 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-lg"
+          (click)="createHospital()">Registrar</button>
+      </div>
+    </form>
+
+    <section *ngIf="isHospital">
+      <div class="mt-4" *ngFor="let supply of currentSupplies; let i = index">
+        <label class="text-gray-600 font-bold inline-block pb-2">{{ supply.name }}</label>
+        <input class="w-full p-2 border rounded focus:outline-none" type="number" (input)="updateSupplyCount($event, i)"
+          placeholder="Cantidad de {{ supply.name }}">
+      </div>
+      <div class="mt-8 flex justify-end">
+        <button class="px-4 py-2 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-lg"
+          (click)="createHospitalAssignment()">Registrar</button>
+      </div>
+    </section>
+
+  </div>
+</div>

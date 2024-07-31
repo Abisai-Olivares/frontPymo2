@@ -1,0 +1,113 @@
+<div class="container mx-auto text-center mt-4">
+  <div class="mb-1 text-left">
+
+    <button mat-button class=" text-center items-center" (click)="goBack()">
+      <span> Regresar</span>
+    </button>
+  </div>
+
+  <div class="mt-8 flex justify-end">
+    <div *ngIf="hospitalDetails.historyAssignedSupples.length > 0" class=" text-right">
+      <button type="button" class="px-4 py-2 bg-orangev1 hover:bg-orangev1 text-white font-bold rounded-lg shadow-md"
+        style="background-color: #C55042;" (click)="openDeliveryDialog()">
+        <span>Entregar Suministros</span>
+      </button>
+
+    </div>
+  </div>
+
+  <div class="mb-5">
+    <h1 class="text-2xl font-bold ">{{hospitalDetails.name_hospital}}</h1>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-blue-100 rounded-lg shadow-md p-4 flex flex-col items-center">
+      <h3 class="text-md font-semibold mb-2">Casos de COVID</h3>
+
+      <div
+        class="w-12 h-12 bg-blue-400 rounded-full flex items-center justify-center text-white font-bold text-2xl mb-2">
+        {{ hospitalDetails.casesCovid }}
+      </div>
+    </div>
+
+    <div class="bg-yellow-100 rounded-lg shadow-md p-4 flex flex-col items-center">
+      <h3 class="text-md font-semibold mb-2">Insumos Asignados</h3>
+
+      <div
+        class="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center text-white font-bold text-2xl mb-2">
+        {{ hospitalDetails.assigned }}
+      </div>
+    </div>
+
+    <div class="bg-green-100 rounded-lg shadow-md p-4 flex flex-col items-center">
+      <h3 class="text-md font-semibold mb-2">Insumos Entregados</h3>
+
+      <div
+        class="w-12 h-12 bg-green-400 rounded-full flex items-center justify-center text-white font-bold text-2xl mb-2">
+        {{ hospitalDetails.delivered }}
+
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="border-t my-8"></div>
+
+  <div class="w-full mx-auto">
+
+    <mat-tab-group animationDuration="1000ms" class=" p-4 rounded-lg">
+      <mat-tab label="Insumos asignados" class="p-4 rounded-lg">
+
+        <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8 ">
+          <div class="md:rounded-lg border border-gray-200 ">
+            <table class="w-full table-auto ">
+              <thead class="bg-Pymo-degraded2">
+                <tr>
+                  <th class="px-4 py-2">Nombre</th>
+                  <th class="px-4 py-2">Cantidad</th>
+                  <th class="px-4 py-2">Fecha de asignacion</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of hospitalDetails.historyAssignedSupples; let i = index">
+                  <td class="px-4 py-2 border-b">{{ hospitalDetails.historyAssignedSupples[i].suppliesWarehouse.name}}
+                  </td>
+                  <td class="px-4 py-2 border-b">{{ item.count }}</td>
+                  <td class="px-4 py-2 border-b">{{ item.application_Date | date:'dd/MM/yyyy' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </mat-tab>
+
+
+      <mat-tab label="Insumos Entregados" class="p-4 rounded-lg">
+        <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8 ">
+          <div class="md:rounded-lg border border-gray-200 ">
+            <table class="w-full table-auto ">
+              <thead class="bg-Pymo-degraded">
+                <tr>
+                  <th class="px-4 py-2">Nombre</th>
+                  <th class="px-4 py-2">Cantidad</th>
+                  <th class="px-4 py-2">Fecha de entrega</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let delivered of hospitalDetails.historyDeliveryOfSupplies; let i = index">
+                  <td class="px-4 py-2 border-b">{{
+                    hospitalDetails.historyDeliveryOfSupplies[i].assignedSupplies.suppliesWarehouse.name}}</td>
+                  <td class="px-4 py-2 border-b">{{ delivered.count }}</td>
+                  <td class="px-4 py-2 border-b">{{ delivered.delivery_date | date: 'dd/MM/yyyy' }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

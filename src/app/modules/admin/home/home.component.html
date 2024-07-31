@@ -1,0 +1,74 @@
+<main class="w-full overflow-x-hidden">
+  <div class="flex space-x-20 my-8 items-center justify-center w-full space-x-15 overflow-x-auto">
+    <div class="w-80 h-60 rounded-lg bg-gray-50 p-4">
+      <div class="flex flex-col bg-Pymo-degraded shadow-lg rounded-lg p-6 w-80 md:w-auto">
+        <div class="text-lg font-semibold text-center text-white">
+          <p>Hospital con más casos</p>
+        </div>
+        <div class="mt-3 font-semibold  text-center text-md text-white">{{ mostCases.name }}</div>
+        <div class="my-4">
+          <div class="text-sm font-light text-right text-white">Casos COVID:
+            <span class="font-bold text-base">{{ mostCases.cases }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-80 h-60  rounded-lg bg-gray-50 p-4">
+      <div class="flex flex-col bg-Pymo-degraded2 shadow-lg rounded-lg p-6 w-80 md:w-auto">
+        <div class="text-lg font-semibold text-center text-white">
+          <p>Producto mas solicitado</p>
+        </div>
+        <div class="mt-3 font-semibold  text-center text-md text-white">{{ mostProductAssigned.product_name }}</div>
+        <div class="my-4">
+          <div class="text-sm font-light text-right text-white">Cantidad solicitada: 
+            <span class="font-bold text-base">{{ mostProductAssigned.total_count }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="container mx-auto mt-4">
+    <div class="sm:items-center sm:justify-between">
+      <div class="flex flex-col mt-6">
+        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8 ">
+            <div class="md:rounded-lg border border-gray-200 mt-10 ">
+              
+              <table class="mx-auto table-sm" mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="name_hospital">
+                  <th class="bg-Pymo-yellow" *matHeaderCellDef>Hospital</th>
+                  <td mat-cell class="text-xl" style="text-align: center;" *matCellDef="let element">
+                    {{element.name_hospital}}</td>
+                </ng-container>
+                <ng-container matColumnDef="cases">
+                  <th class="bg-Pymo-yellow" *matHeaderCellDef>Casos covid</th>
+                  <td mat-cell class="text-xl" style="text-align: center;" *matCellDef="let element">{{element.cases}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="percentage_deliveries">
+                  <th class="bg-Pymo-yellow " *matHeaderCellDef>Porcentaje entregado</th>
+                  <td mat-cell style="text-align: center;" *matCellDef="let element">
+                    <div class="box-border pt-3">
+                      <div class="w-full  mb-3 bg-gray-200 rounded-full ">
+                        <div [ngStyle]="{'width.%': element.percentage_deliveries}"
+                          class="text-xs rounded-full font-semibold  text-right dark:bg-green-400">
+                          {{ roundToInteger(element.percentage_deliveries) }}%
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+              </table>
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                aria-label="Select page of periodic elements">
+              </mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>

@@ -1,0 +1,47 @@
+<div class="h-screen w-full  bg-containerComponents relative flex overflow-hidden">
+
+  <aside class=" bg-sidenav  h-full w-5 flex flex-col space-y-10 items-center justify-center relative ">
+  </aside>
+
+  <div class="w-full h-full flex flex-col justify-between">
+
+    <header class="h-16 w-full flex relative justify-center text-center items-center px-5 bg-navbar">
+      <div class="md:items-start md:text-start">
+        <span>
+          <mat-icon class="mr-2 md:mr-8" style="width: 80px; height: 80px; font-size: 80px" [svgIcon]="'pymo_blanco'"></mat-icon>
+        </span>
+      </div>
+      <div class="flex items-center space-x-4 text-white">
+        <div class="flex space-x-6 md:space-x-20">
+          <div class="mx-2">
+            <button class="text-xl" routerLink="/home">
+              <p>Dashboard</p>
+            </button>
+          </div>
+    
+          <div class="mx-2 md:mx-4">
+            <button class="text-xl" routerLink="/hospital">
+              <p>Hospital</p>
+            </button>
+          </div>
+    
+          <div class="mx-2 md:mx-4">
+            <button class="text-xl" routerLink="/warehouse">
+              <p>Almacen</p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+
+
+    <main class="max-w-full h-full flex relative overflow-y-auto">
+      <div class="h-full w-full m-5 justify-center">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+
+
+</div>

@@ -1,0 +1,48 @@
+<div class="w-full">
+    <div class="mb-28 text-left">
+        <button type="button"
+            class="px-4 py-2 bg-orangev1 hover:bg-orangev1 text-white font-bold rounded-lg shadow-md bg-Pymo-orange"
+            (click)="openHospitalFormDialog()">
+            <span>Nuevo</span>
+        </button>
+    </div>
+
+    <section class="container mx-auto">
+        <div class="sm:items-center sm:justify-between">
+            <div class="flex flex-col mt-6">
+                <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8 ">
+                        <div class="md:rounded-lg border border-gray-200 ">
+                            <table class="mx-auto table-sm" mat-table [dataSource]="dataSource">
+                                <ng-container matColumnDef="name">
+                                    <th class="bg-Pymo-yellow" *matHeaderCellDef>Hospital</th>
+                                    <td mat-cell style="text-align: center;" class="text-xl" *matCellDef="let element">
+                                        {{element.name}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="cases">
+                                    <th class="bg-Pymo-yellow" *matHeaderCellDef>Casos covid</th>
+                                    <td mat-cell style="text-align: center;" class="text-xl" *matCellDef="let element">
+                                        {{element.cases}}</td>
+                                </ng-container>
+                                <ng-container matColumnDef="id">
+                                    <th class="bg-Pymo-yellow" *matHeaderCellDef>Detalles</th>
+                                    <td mat-cell style="text-align: center;" class="text-xl" *matCellDef="let element">
+                                        <button type="button" class="bg-Pymo-orange  text-white px-2 py-1 rounded-lg"
+                                            (click)="navigateToHospitalDetails(element.id)">Ver Detalles</button>
+                                    </td>
+                                </ng-container>
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                            </table>
+                            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                                aria-label="Select page of periodic elements">
+                            </mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>

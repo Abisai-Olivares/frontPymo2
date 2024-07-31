@@ -1,0 +1,21 @@
+<div class="fixed inset-0 flex items-center justify-center z-50">
+  <div class="p-4 bg-white rounded-lg shadow-md">
+    <section>
+      <div class="mt-4" *ngFor="let assigned of data.historyAssignedSupples; let i = index">
+
+        <span class="text-sm text-orangev1">{{assigned.suppliesWarehouse.name}}</span>
+        <input (input)="pushFormArray($event, assigned.suppliesWarehouse.id)"
+          class="w-full p-2 border rounded focus:outline-none focus:ring focus:border-orangev1" type="number"
+          placeholder="cantidad">
+
+      </div>
+      <div class="mt-8 flex justify-between">
+        <button class="px-4 py-2 bg-red-200 hover:bg-red-400 text-white font-semibold rounded"
+          (click)="closeDialog()">Cerrar</button>
+        <button class="px-4 py-2 bg-green-200 hover:bg-green-400 text-black font-semibold rounded"
+          (click)="createHospital()">Entregar</button>
+      </div>
+    </section>
+
+  </div>
+</div>

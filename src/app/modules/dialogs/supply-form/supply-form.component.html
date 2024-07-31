@@ -1,0 +1,25 @@
+<div class="fixed inset-0 flex items-center justify-center z-50">
+  <div class="p-4 bg-white rounded-lg shadow-md">
+    <form [formGroup]="supplyForm" class="w-full max-w-sm">
+      <span class="font-semibold text-base mb-2">{{data ? data.name : 'Nuevo Insumo'}}</span>
+      <div class="flex items-center border-b border-yellow-500 py-2">
+        <input *ngIf="!data" [formControlName]="'name'"
+          class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+          type="Text" placeholder="Insumo">
+        <input [formControlName]="'count'"
+          class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+          type="number" placeholder="Cantidad">
+        <button
+          class="flex-shrink-0 bg-Pymo-yellow text-sm text-black py-1 px-2 rounded"
+          (click)="sendSupply()">
+          {{data? 'Agregar': 'Registrar'}}
+        </button>
+        <button
+          class="flex-shrink-0 border-transparent border-4 text-black  text-sm py-1 px-2 rounded"
+          (click)="closeModal()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
